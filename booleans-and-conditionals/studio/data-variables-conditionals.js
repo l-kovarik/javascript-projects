@@ -22,6 +22,7 @@ let preparedForLiftOff = true;
 
 if (astronautCount > 7) {
    console.log("Abort- too many astronauts");
+   preparedForLiftOff = false;
 } else {
     console.log("Astronaut Count OK");
 }
@@ -30,6 +31,7 @@ if (astronautCount > 7) {
 
 if (astronautStatus !== "ready") {
     console.log("Abort- Astronauts not ready.");
+    preparedForLiftOff = false;
 } else {
     console.log("Astronauts are ready.");
 }
@@ -38,6 +40,7 @@ if (astronautStatus !== "ready") {
 
 if (totalMassKg > 850000) {
     console.log("Abort- total mass too great");
+    preparedForLiftOff = false;
 } else {
     console.log("Total mass below maximum limit.");
 }
@@ -46,6 +49,7 @@ if (totalMassKg > 850000) {
 
 if (fuelTempCelsius > -150 || fuelTempCelsius < -300) {
     console.log("Abort- fuel temp out of range");
+    preparedForLiftOff = false;
 } else {
     console.log("Fuel temp within acceptable range.");
 }
@@ -54,6 +58,7 @@ if (fuelTempCelsius > -150 || fuelTempCelsius < -300) {
 
 if (fuelLevel !== "100%") {
     console.log("Abort- check fuel level");
+    preparedForLiftOff = false;
 } else {
     console.log("Full tank.");
 }
@@ -62,8 +67,26 @@ if (fuelLevel !== "100%") {
 
 if (weatherStatus !== "clear") {
     console.log("Abort- bad weather.");
-} else (
+    preparedForLiftOff = false;
+} else {
     console.log("Weather clear for takeoff.");
-)
+}
 
 // Verify shuttle launch can proceed based on above conditions
+
+if (preparedForLiftOff === true) {
+    console.log(
+        `\nAll systems are a go! Initiating space shuttle launch sequence.\n---\nDate: `+ date + 
+        `\nTime: `+ time +
+        `\nAstronaut count: ` + astronautCount +
+        `\nCrew mass: ` + crewMassKG + ` kg` +
+        `\nFuel mass: ` + fuelMassKg + ` kg` +
+        `\nShuttle mass: ` + shuttleMassKg + ` kg` +
+        `\nTotal mass: ` + totalMassKg + ` kg` +
+        `\nFuel temperature: ` + fuelTempCelsius + ` \u00B0C` +
+        `\nWeather status: ` + weatherStatus +
+        `\n---\nHave a safe trip!`
+    );
+} else {
+    console.log("Abort- not ready yet.");
+}
